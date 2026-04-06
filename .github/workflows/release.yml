@@ -1,5 +1,6 @@
 name: Build Release
-
+permissions:
+  contents: write
 on:
   release:
     types: [published]
@@ -10,6 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        
         os: [ubuntu-latest, windows-latest, macos-latest]
     
     steps:
@@ -21,14 +23,21 @@ jobs:
 
       - name: Setup Python 3.12
         run: uv python install 3.12
-
+      - name: Creat virtual env
+        run: uv venv --python 3.12 --managed-python
       - name: Install dependencies
-        run: uv pip install --refresh --strict --link-mode=copy zstandard pyside6 leveldb-py nuitka imageio --system
+        run: uv pip install --refresh --strict --link-mode=copy zstandard pyside6 leveldb-py nuitka imageio
+
+      - name: Setup MSVC (for dumpbin)
+        if: matrix.os == 'windows-latest'
+        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Build with Nuitka (Windows)
         if: matrix.os == 'windows-latest'
+        shell: cmd
         run: |
-          python -m nuitka --onefile --output-dir=dist ^
+          uv run python -m nuitka --onefile --output-dir=dist ^
+            --assume-yes-for-downloads ^
             --company-name="Zuko [@tansautn]"  ^
             --product-name="LevelDB Viewer | Z U K O" ^
             --file-version="2026.1.0.0" ^
@@ -42,16 +51,33 @@ jobs:
       - name: Build with Nuitka (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
-          python -m nuitka --onefile --output-dir=dist \
+          uv run python -m nuitka --onefile --output-dir=dist \
             --plugin-enable=pyside6 \
-            ./src/leveldb-viewer.py
+            --assume-yes-for-downloads \
+            --company-name="Zuko [@tansautn]"  \
+            --product-name="LevelDB Viewer | Z U K O" \
+            --file-version="2026.1.0.0" \
+            --product-version="1.0.0" \
+            --copyright="© 2026 (Z) Programing" \
+            --trademarks="Z U K O ®" \
+            --plugin-enable=pyside6 \
+            --windows-console-mode=disable \
+            --windows-icon-from-ico=assets/icon.png ./src/leveldb-viewer.py
 
       - name: Build with Nuitka (macOS)
         if: matrix.os == 'macos-latest'
         run: |
-          python -m nuitka --standalone --macos-create-app-bundle --output-dir=dist \
+          uv run python -m nuitka --standalone --macos-create-app-bundle --output-dir=dist \
             --plugin-enable=pyside6 \
-            ./src/leveldb-viewer.py
+            --assume-yes-for-downloads \
+            --company-name="Zuko [@tansautn]"  \
+            --product-name="LevelDB Viewer | Z U K O" \
+            --file-version="2026.1.0.0" \
+            --product-version="1.0.0" \
+            --copyright="© 2026 (Z) Programing" \
+            --trademarks="Z U K O ®" \
+            --windows-console-mode=disable \
+            --windows-icon-from-ico=assets/icon.png ./src/leveldb-viewer.py
           cd dist
           zip -r leveldb-viewer-macos.zip leveldb-viewer.app
 
@@ -60,7 +86,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p artifacts
-          cp dist/leveldb-viewer* artifacts/
+          find dist -maxdepth 1 -type f -name "leveldb-viewer*" -exec cp {} artifacts/ \;
 
       - name: Prepare Artifacts (macOS)
         if: matrix.os == 'macos-latest'
