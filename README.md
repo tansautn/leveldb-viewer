@@ -2,6 +2,7 @@
 
 Một công cụ trực quan để xem và duyệt dữ liệu trong các database **LevelDB**.
 
+> Also i have [English](./README_EN.md) version of this README. Translated by Claude on Github Copilot
 ## LevelDB là gì và thường có mặt ở đâu?
 
 [LevelDB](https://github.com/google/leveldb) là thư viện lưu trữ Key-Value (khóa-giá trị) tốc độ cực nhanh do Google phát triển, lưu trữ dữ liệu dưới dạng các bytes. Nó sử dụng cấu trúc Log-Structured Merge-tree (LSM) nên tốc độ ghi cũng như đọc đều rất tối ưu, không yêu cầu thiết lập client-server cồng kềnh.
