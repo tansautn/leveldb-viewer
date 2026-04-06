@@ -1,5 +1,6 @@
 name: Build Release
-
+permissions:
+  contents: write
 on:
   release:
     types: [published]
@@ -21,9 +22,19 @@ jobs:
 
       - name: Setup Python 3.12
         run: uv python install 3.12
-
+      - name: Creat virtual env
+        run: uv venv --python 3.12 --managed-python
       - name: Install dependencies
-        run: uv pip install --refresh --strict --link-mode=copy zstandard pyside6 leveldb-py nuitka imageio --system
+        run: uv pip install --refresh --strict --link-mode=copy zstandard pyside6 leveldb-py nuitka imageio
+      - name: Activate venv (Win)
+        if: matrix.os == 'windows-latest'
+        run: call .venv/Scripts/activate.bat
+      - name: Activate venv (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: source .venv/Scripts/activate.sh
+      - name: Activate venv (Mac)
+        if: matrix.os == 'macos-latest'
+        run: source .venv/Scripts/activate.sh
 
       - name: Build with Nuitka (Windows)
         if: matrix.os == 'windows-latest'
