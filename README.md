@@ -20,7 +20,7 @@ Vì không tìm được một công cụ Viewer nào thực sự ngon, đủ đ
 
 ## Install/Download
 
-1. **Vào Release download bản mới nhất được build tự động tại [Latest Release Page](github.com/tansautn/leveldb-viewer/releases/latest)**
+1. **Vào Release download bản mới nhất được build tự động tại [Latest Release Page](//github.com/tansautn/leveldb-viewer/releases/latest)**
 2. **Chọn phiên bản phù hợp hệ điều hành, load về (Hỗ trợ: Windows, MacOS, Linux)**
 3. **Giải nén, bung package (nếu cần); Tìm file thực thi rồi View thôi**
 
