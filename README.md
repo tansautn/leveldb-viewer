@@ -14,9 +14,19 @@ Bạn sẽ thường xuyên bắt gặp LevelDB ẩn mình bên trong các thư 
 
 ## Câu chuyện ra đời
 
-*"Tìm mỏi mắt không thấy cái viewer nào. LÀO GÌ CŨNG TÔN !"*
+*Tìm mỏi mắt không thấy cái viewer nào. Thôi thì lại "LÀO GÌ CŨNG TÔN !"*
 
 Vì không tìm được một công cụ Viewer nào thực sự ngon, đủ đơn giản nhưng mạnh mẽ để xem mã HEX, văn bản và giải mã các Key-Value từ LevelDB trên Windows, dự án này đã ra đời. Mục tiêu là biến một tác vụ vốn phải dò dẫm dòng lệnh thành một giao diện GUI thân thiện nhưng hiệu năng cao.
+
+## Install/Download
+
+1. **Vào Release download bản mới nhất được build tự động tại [Latest Release Page](github.com/tansautn/leveldb-viewer/releases/latest)**
+2. **Chọn phiên bản phù hợp hệ điều hành, load về (Hỗ trợ: Windows, MacOS, Linux)**
+3. **Giải nén, bung package (nếu cần); Tìm file thực thi rồi View thôi**
+
+## Changelog
+
+- Khả năng chỉ có 1 phiên bản thôi. Changelog làm đếch gì
 
 ## Công nghệ sử dụng
 - Python 3.12+
