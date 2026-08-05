@@ -2,6 +2,7 @@
 
 Một công cụ trực quan để xem và duyệt dữ liệu trong các database **LevelDB**.
 
+> Also i have [English](./README_EN.md) version of this README. Translated by Claude on Github Copilot
 ## LevelDB là gì và thường có mặt ở đâu?
 
 [LevelDB](https://github.com/google/leveldb) là thư viện lưu trữ Key-Value (khóa-giá trị) tốc độ cực nhanh do Google phát triển, lưu trữ dữ liệu dưới dạng các bytes. Nó sử dụng cấu trúc Log-Structured Merge-tree (LSM) nên tốc độ ghi cũng như đọc đều rất tối ưu, không yêu cầu thiết lập client-server cồng kềnh.
@@ -14,9 +15,19 @@ Bạn sẽ thường xuyên bắt gặp LevelDB ẩn mình bên trong các thư 
 
 ## Câu chuyện ra đời
 
-*"Tìm mỏi mắt không thấy cái viewer nào. LÀO GÌ CŨNG TÔN !"*
+*Tìm mỏi mắt không thấy cái viewer nào. Thôi thì lại "LÀO GÌ CŨNG TÔN !"*
 
 Vì không tìm được một công cụ Viewer nào thực sự ngon, đủ đơn giản nhưng mạnh mẽ để xem mã HEX, văn bản và giải mã các Key-Value từ LevelDB trên Windows, dự án này đã ra đời. Mục tiêu là biến một tác vụ vốn phải dò dẫm dòng lệnh thành một giao diện GUI thân thiện nhưng hiệu năng cao.
+
+## Install/Download
+
+1. **Vào Release download bản mới nhất được build tự động tại [Latest Release Page](//github.com/tansautn/leveldb-viewer/releases/latest)**
+2. **Chọn phiên bản phù hợp hệ điều hành, load về (Hỗ trợ: Windows, MacOS, Linux)**
+3. **Giải nén, bung package (nếu cần); Tìm file thực thi rồi View thôi**
+
+## Changelog
+
+- Khả năng chỉ có 1 phiên bản thôi. Changelog làm đếch gì
 
 ## Công nghệ sử dụng
 - Python 3.12+
